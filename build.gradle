@@ -1,0 +1,22 @@
+group 'me.foat.articles.aspects'
+version '1.0'
+
+apply plugin: 'java'
+
+apply plugin:'application'
+mainClassName = "me.foat.articles.aspects.Application"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework:spring-webmvc:4.+"
+    compile "org.springframework:spring-aop:4.+"
+    compile "org.springframework.boot:spring-boot-starter-web:1.+"
+    compile "org.aspectj:aspectjrt:1.+"
+    compile "org.aspectj:aspectjweaver:1.+"
+    compile "org.slf4j:slf4j-api:1.+"
+}
