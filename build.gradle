@@ -27,6 +27,6 @@ dependencies {
 }
 
 // enables native aspectj
-applicationDefaultJvmArgs = [
-        "-javaagent:${configurations.aspectjweaver.asPath}"
-]
+//applicationDefaultJvmArgs = [
+//        "-javaagent:${configurations.aspectjweaver.asPath}"
+//]

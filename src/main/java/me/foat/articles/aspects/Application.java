@@ -8,8 +8,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 
 /**
- * remove comments to enable spring aop
- *
  * @author Foat Akhmadeev
  *         02/06/15
  */

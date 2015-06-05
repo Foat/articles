@@ -25,23 +25,23 @@ public class ExampleAspect {
     private static final Logger log = LoggerFactory.getLogger(ExampleAspect.class);
 
     @Around("execution(@me.foat.articles.aspects.annotations.AroundMethod * *.*(..)) && @annotation(change)")
-    public Object greetings(ProceedingJoinPoint joinPoint, AroundMethod change) throws Throwable {
+    public Object process(ProceedingJoinPoint joinPoint, AroundMethod change) throws Throwable {
         log.info("Annotation value = {}", change.value());
 
         // all method parameters
         final Object[] args = joinPoint.getArgs();
         // method information
         final Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
-        final Annotation[][] pa =
+        final Annotation[][] annotations =
                 method.getParameterAnnotations();
 
         // get index of a parameter with ChangeParam annotation
-        int idx = getParameterIdx(pa, method.getName());
+        int idx = getParameterIdx(annotations, method.getName());
         Object arg = args[idx];
 
         if (!(arg instanceof String)) {
             throw new IllegalArgumentException(String.format(
-                    "Incorrect argument class in method %s, class is %s, required String",
+                    "Incorrect argument class in a method %s, class is %s, required String",
                     method.getName(), arg.getClass()));
         }
 
@@ -60,12 +60,12 @@ public class ExampleAspect {
         return "" + result + change.value() + ")";
     }
 
-    private int getParameterIdx(Annotation[][] pa, String methodName) {
+    private int getParameterIdx(Annotation[][] annotations, String methodName) {
         OptionalInt optIdx = IntStream
-                .range(0, pa.length)
+                .range(0, annotations.length)
                 .filter(i ->
                         Arrays
-                                .stream(pa[i])
+                                .stream(annotations[i])
                                 .filter(a -> a instanceof ChangeParam)
                                 .findAny()
                                 .isPresent())

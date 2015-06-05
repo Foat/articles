@@ -24,11 +24,10 @@ public class AspectController {
     public String multiply(HttpServletRequest request, @RequestParam @ChangeParam String number) {
         log.info("Processing multiply method with a number parameter = {}", number);
 
-        String result = internalMethodAdd(number);
+//        number = internalMethodAdd(number);
+//        log.info("Internal method returned a result after aspect processing = {}", number);
 
-        log.info("Internal method returned a result after aspect processing = {}", result);
-
-        return result + " * ";
+        return number + " * ";
     }
 
     @AroundMethod(value = 200)
