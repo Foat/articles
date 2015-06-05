@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<aspectj>
+    <!-- place all aspects here -->
+    <aspects>
+        <aspect name="me.foat.articles.aspects.ExampleAspect"/>
+    </aspects>
+    <weaver options="-verbose -showWeaveInfo">
+    </weaver>
+</aspectj>
