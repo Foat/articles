@@ -53,11 +53,11 @@ public class ExampleAspect {
         args[idx] = number;
 
         // display result of a method processing
-        final Object preResult = joinPoint.proceed(args);
-        log.info("Method {} returned a result = {}", method.getName(), preResult);
+        final Object result = joinPoint.proceed(args);
+        log.info("Method {} returned a result = {}", method.getName(), result);
 
         // override method return value
-        return "" + preResult + change.value() + ")";
+        return "" + result + change.value() + ")";
     }
 
     private int getParameterIdx(Annotation[][] pa, String methodName) {
