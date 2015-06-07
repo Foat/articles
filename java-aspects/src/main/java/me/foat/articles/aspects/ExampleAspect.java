@@ -24,9 +24,9 @@ import java.util.stream.IntStream;
 public class ExampleAspect {
     private static final Logger log = LoggerFactory.getLogger(ExampleAspect.class);
 
-    @Around("execution(@me.foat.articles.aspects.annotations.AroundMethod * *.*(..)) && @annotation(change)")
-    public Object process(ProceedingJoinPoint joinPoint, AroundMethod change) throws Throwable {
-        log.info("Annotation value = {}", change.value());
+    @Around("execution(@me.foat.articles.aspects.annotations.AroundMethod * *.*(..)) && @annotation(ann)")
+    public Object process(ProceedingJoinPoint joinPoint, AroundMethod ann) throws Throwable {
+        log.info("Annotation value = {}", ann.value());
 
         // all method parameters
         final Object[] args = joinPoint.getArgs();
@@ -57,7 +57,7 @@ public class ExampleAspect {
         log.info("Method {} returned a result = {}", method.getName(), result);
 
         // override method return value
-        return "" + result + change.value() + ")";
+        return "" + result + ann.value() + ")";
     }
 
     private int getParameterIdx(Annotation[][] annotations, String methodName) {
