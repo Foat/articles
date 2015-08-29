@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scala.js and Scala.rx for mouse position</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        #position {
+            position: absolute;
+            z-index: 1;
+        }
+
+        #canvas {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div id="position">
+    Mouse position:
+</div>
+<div>
+    <canvas id="canvas"></canvas>
+</div>
+
+<script type="text/javascript" src="../scala-js-reactive-mouse-fastopt.js"></script>
+<script>
+    article.MousePosition().start(document.getElementById('position'), document.getElementById('canvas'));
+</script>
+</body>
+</html>
