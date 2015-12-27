@@ -11,7 +11,7 @@ class Sender(indexer: ActorRef, id: Int) extends Actor {
 
   def receive: Receive = {
     case "start" =>
-      println(s"$id sends $count to the indexer")
+      println(s"$id sends $count to the store")
       indexer ! s"$id => $count"
       count += 1
       if (count < 5)
