@@ -12,15 +12,15 @@ import scala.language.postfixOps
   */
 object Main extends App {
   val system = ActorSystem()
-  val indexer = system.actorOf(Props(new Store))
+  val store = system.actorOf(Props(new Store))
 
-  val sender1 = system.actorOf(Props(new Sender(indexer, 1)))
-  val sender2 = system.actorOf(Props(new Sender(indexer, 2)))
-  val sender3 = system.actorOf(Props(new Sender(indexer, 3)))
+  val sender1 = system.actorOf(Props(new Sender(store, 1)))
+  val sender2 = system.actorOf(Props(new Sender(store, 2)))
+  val sender3 = system.actorOf(Props(new Sender(store, 3)))
 
   sender1 ! "start"
   sender2 ! "start"
   sender3 ! "start"
 
-  system.scheduler.scheduleOnce(2 seconds)({indexer ! PoisonPill; system.terminate})
+  system.scheduler.scheduleOnce(2 seconds)({store ! PoisonPill; system.terminate})
 }
